@@ -20,7 +20,7 @@ function getKeypair(privateKey) {
 async function getToken(privateKey) {
   try {
     const { data } = await axios({
-      url: 'https://odyssey-api-beta.sonic.game/auth/sonic/challenge',
+      url: 'https://odyssey-api-beta.sonic.game/testnet-v1/auth/sonic/challenge',
       params: {
         wallet: getKeypair(privateKey).publicKey,
       },
@@ -37,7 +37,7 @@ async function getToken(privateKey) {
       'base64'
     );
     const response = await axios({
-      url: 'https://odyssey-api-beta.sonic.game/auth/sonic/authorize',
+      url: 'https://odyssey-api-beta.sonic.game/testnet-v1/auth/sonic/authorize',
       method: 'POST',
       headers: HEADERS,
       data: {
@@ -56,7 +56,7 @@ async function getToken(privateKey) {
 async function getProfile(token) {
   try {
     const { data } = await axios({
-      url: 'https://odyssey-api-beta.sonic.game/user/rewards/info',
+      url: 'https://odyssey-api-beta.sonic.game/testnet-v1/user/rewards/info',
       method: 'GET',
       headers: { ...HEADERS, Authorization: token },
     });
@@ -88,7 +88,7 @@ async function doTransactions(tx, keypair, retries = 3) {
 async function openMysteryBox(token, keypair, retries = 3) {
   try {
     const { data } = await axios({
-      url: 'https://odyssey-api-beta.sonic.game/user/rewards/mystery-box/build-tx',
+      url: 'https://odyssey-api-beta.sonic.game/testnet-v1/user/rewards/mystery-box/build-tx',
       method: 'GET',
       headers: { ...HEADERS, Authorization: token },
     });
@@ -98,7 +98,7 @@ async function openMysteryBox(token, keypair, retries = 3) {
     tx.partialSign(keypair);
     const signature = await doTransactions(tx, keypair);
     const response = await axios({
-      url: 'https://odyssey-api-beta.sonic.game/user/rewards/mystery-box/open',
+      url: 'https://odyssey-api-beta.sonic.game/testnet-v1/user/rewards/mystery-box/open',
       method: 'POST',
       headers: { ...HEADERS, Authorization: token },
       data: {
@@ -217,7 +217,7 @@ async function dailyClaim(token) {
   while (counter <= maxCounter) {
     try {
       const { data } = await axios({
-        url: 'https://odyssey-api.sonic.game/user/transactions/rewards/claim',
+        url: 'https://odyssey-api.sonic.game/testnet-v1/user/transactions/rewards/claim',
         method: 'POST',
         headers: { ...HEADERS, Authorization: token },
         data: {
@@ -272,7 +272,7 @@ async function dailyClaim(token) {
 async function dailyLogin(token, keypair, retries = 3) {
   try {
     const { data } = await axios({
-      url: 'https://odyssey-api-beta.sonic.game/user/check-in/transaction',
+      url: 'https://odyssey-api-beta.sonic.game/testnet-v1/user/check-in/transaction',
       method: 'GET',
       headers: { ...HEADERS, Authorization: token },
     });
@@ -283,7 +283,7 @@ async function dailyLogin(token, keypair, retries = 3) {
     const signature = await doTransactions(tx, keypair);
 
     const response = await axios({
-      url: 'https://odyssey-api-beta.sonic.game/user/check-in',
+      url: 'https://odyssey-api-beta.sonic.game/testnet-v1/user/check-in',
       method: 'POST',
       headers: { ...HEADERS, Authorization: token },
       data: {
