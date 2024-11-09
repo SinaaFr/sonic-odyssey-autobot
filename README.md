@@ -1,4 +1,4 @@
-# Sonic Odyssey Bot
+# Sonic Odyssey Bot V-1
 
 Sonic Odyssey Bot is an application designed for interacting with the Sonic Odyssey platform. It supports multiple features including sending SOL (Solana) cryptocurrency transactions, claiming rewards, opening mystery boxes, and daily login operations.
 
@@ -58,7 +58,7 @@ sudo apt update & sudo apt upgrade -y
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Theshaho/sonic-odyssey-autobot.git
+   git clone https://github.com/SinaaFr/sonic-odyssey-autobot.git
    ```
 
 2. Navigate into the project directory:
